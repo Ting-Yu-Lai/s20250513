@@ -74,23 +74,15 @@
     <h2>計算使用者下次生日還有多少時間</h2>
     <?php
     $userBirthday = "2001-11-10";
-    explode ($userBirthday,"-");
-    $date2 = "2025-05-21";
-    //當前時間戳記
-    // time()
+    $userBirthday_array = explode ("-",$userBirthday);
+    $userBirthday_array[0] = date("Y"); //運用array的方式去更改當前年份
+    
+    $nextBirthday = join("-",$userBirthday_array); //把userBirthday_array，從陣列轉成今年(或明年)生日字串
 
     // 字串轉換為時間戳記
     // strtotime();
-    $date1string = strtotime($date1);
-    echo $date1string . "<br>";
-    $date2string = strtotime($date2);
-    echo $date2string . "<br>";
-
-
-    $diff = $date2string - $date1string;
-    $day = ($diff / (60 * 60 * 24) - 1);
-    echo "兩個日期間格 $day 天";
-
+    $today = strtotime(date("Y-m-d")); //取得今天時間
+    $birthday_timestamp = strtotime($$nextBirthday); //把下一年的生日轉成時間戳記
 
     //將時間戳記轉換換為日期字串
     // $dateFromTimeStep = date("Y-m-d H:i:s", $timestamp);
