@@ -79,11 +79,20 @@
     
     $nextBirthday = join("-",$userBirthday_array); //把userBirthday_array，從陣列轉成今年(或明年)生日字串
 
-    // 字串轉換為時間戳記
-    // strtotime();
-    $today = strtotime(date("Y-m-d")); //取得今天時間
-    $birthday_timestamp = strtotime($$nextBirthday); //把下一年的生日轉成時間戳記
 
+    // strtotime();
+    $today = strtotime(date("Y-m-d")); //取得今天時間 並將字串轉換為時間戳記
+    $birthday_timestamp = strtotime($nextBirthday); //把下一年的生日轉成時間戳記
+
+    if ($today > $birthday_timestamp ) {
+        $birthday_timestamp = strtotime("+1 year", $birthday_timestamp);
+    }
+
+    $diff = $birthday_timestamp - $today;
+    $days = ($diff/(60*60*24));
+
+    echo "你的生日: $userBirthday <br>";
+    echo "距離下次生日還有 $days 天"; 
     //將時間戳記轉換換為日期字串
     // $dateFromTimeStep = date("Y-m-d H:i:s", $timestamp);
     // echo "時間戳記轉換為日期字串: $dateFromTimeStep <br>";
